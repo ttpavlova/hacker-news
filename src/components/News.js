@@ -1,10 +1,13 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
+import { getStoriesAction } from "../store/storiesReducer";
 import Story from "./Story";
 
 function News() {
 
-    const [stories, setStories] = useState([]);
+    const dispatch = useDispatch();
+    const stories = useSelector(state => state.stories.stories);
 
     const listStories = stories.map((story) => (
         <Story
@@ -14,13 +17,16 @@ function News() {
     ));
 
     function getLatestNews() {
-        fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
+        return function(dispatch) {
+            fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
             .then(response => response.json())
-            .then(result => setStories(result.slice(0,10)));
+            .then(result => dispatch(getStoriesAction(result.slice(0,10))))
+            .catch(err => alert("Error while loading the data"));
+        }
     }
 
     useEffect(() => {
-        getLatestNews();
+        dispatch(getLatestNews());
     }, []);
 
     if (!stories) {
