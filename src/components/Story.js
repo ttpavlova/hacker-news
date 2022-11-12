@@ -1,16 +1,11 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 
 function Story(props) {
 
-    const [story, setStory] = useState("");
-
-    function getStory() {
-        fetch(`https://hacker-news.firebaseio.com/v0/item/${props.id}.json`)
-            .then(response => response.json())
-            .then(result => setStory(result));
-    }
+    // const story = useSelector(state => getStoryById(state, props.id));
+    const story = useSelector(state => state.stories.stories.find(story => story.id === Number(props.id)));
 
     // convert unix timestamp to date
     function convertToDate(time) {
@@ -22,10 +17,6 @@ function Story(props) {
         
         return date + "." + month + "." + year;
     }
-
-    useEffect(() => {
-        getStory();
-    }, []);
 
     return(
         <div>

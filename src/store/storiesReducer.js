@@ -2,15 +2,21 @@ const initialState = {
     stories: []
 }
 
-const GET_STORIES = "GET_STORIES";
+const ADD_STORIES = "ADD_STORIES";
 
 export const storiesReducer = (state = initialState, action) => {
     switch(action.type) {
-        case GET_STORIES:
+        case ADD_STORIES:
             return { ...state, stories: action.payload };
         default:
             return state;
     }
 }
 
-export const getStoriesAction = (payload) => ({ type: GET_STORIES, payload });
+export const addStoriesAction = (payload) => ({ type: ADD_STORIES, payload });
+
+export const getAllStories = state => state.stories.stories;
+
+export const getStoryById = (state, storyId) => {
+    state.stories.stories.find(story => story.id === Number(storyId));
+}
