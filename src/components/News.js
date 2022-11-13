@@ -36,8 +36,18 @@ function News() {
         }
     }
 
-    useEffect(() => {
+    function refreshNews() {
         dispatch(getLatestNews());
+    }
+
+    useEffect(() => {
+        refreshNews(); // load a list of news when component is rendered
+
+        const interval = setInterval(() => {
+            refreshNews(); // update the list every minute
+        }, 60000);
+
+        return () => clearInterval(interval); // represents the unmount function
     }, []);
 
     if (!storiesId) {
@@ -45,7 +55,10 @@ function News() {
     }
 
     return (
-        <div>{listStories}</div>
+        <>
+            <button onClick={() => refreshNews()}>Refresh news</button>
+            <div>{listStories}</div>
+        </>
     );
 }
 

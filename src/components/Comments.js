@@ -23,7 +23,7 @@ function Comments(props) {
             .then(responses => Promise.all(responses.map(response => response.json())))
             .then(result => {
                 setComments(result);
-                console.log(result);
+                // console.log(result);
             })
             .catch(err => alert("Error while loading the data"));
         }
