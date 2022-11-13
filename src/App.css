@@ -1,0 +1,10 @@
+.comment {
+    margin-bottom: 10px;
+    padding: 30px;
+    border: 1px solid gray;
+}
+
+.comment:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}

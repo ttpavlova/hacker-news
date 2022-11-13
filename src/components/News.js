@@ -14,10 +14,6 @@ function News() {
     const listStories = stories.map((story) => (
         <Story
             id={story.id}
-            title={story.title}
-            score={story.score}
-            by={story.by}
-            time={story.time}
             key={story.id}
         />
     ));
@@ -26,7 +22,7 @@ function News() {
         return function(dispatch) {
             fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
                 .then(response => response.json())
-                .then(result => result.slice(0,10)) // select only 10 latest stories
+                .then(result => result.slice(0,100)) // select the 100 latest stories
                 .then(result => {
                     dispatch(getStoriesIdAction(result)); // store an array of IDs
                     return Promise.all(result.map(id => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)));
