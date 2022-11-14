@@ -30,7 +30,6 @@ function News() {
                 .then(responses => Promise.all(responses.map(response => response.json())))
                 .then(stories => {
                     dispatch(addStoriesAction(stories)); // store an array of stories as objects
-                    // console.log(stories);
                 })
                 .catch(err => alert("Error while loading the data"));
         }

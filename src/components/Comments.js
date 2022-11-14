@@ -17,24 +17,24 @@ function Comments(props) {
     ));
 
     // load all comments
-    function getCommentsArray(arrayOfIds) {
+    function getComments(arrayOfIds) {
         if (arrayOfIds) {
             Promise.all(arrayOfIds.map(id => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)))
             .then(responses => Promise.all(responses.map(response => response.json())))
             .then(result => {
                 setComments(result);
-                // console.log(result);
             })
             .catch(err => alert("Error while loading the data"));
         }
     }
 
     useEffect(() => {
-        getCommentsArray(story.kids);
+        getComments(story.kids);
     }, []);
 
     return (
         <div>
+            <button onClick={() => getComments(story.kids)}>Refresh comments</button>
             <div>Comments for id: {props.id}</div>
             <div>Comments: {story.kids ? story.kids.length : 0}</div>
             {listComments}
