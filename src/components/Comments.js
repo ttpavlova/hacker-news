@@ -1,11 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { increaseCommentCount, resetCommentCount } from "../store/commentCountReducer";
+import { updateStoryComments } from "../store/storiesReducer";
 import Comment from "./Comment";
 
 function Comments(props) {
 
+    const dispatch = useDispatch();
     const story = useSelector(state => state.stories.stories.find(story => story.id === Number(props.id)));
+    const commentCount = useSelector(state => state.commentCount.commentCount);
 
     const [comments, setComments] = useState([]);
 
@@ -18,25 +22,45 @@ function Comments(props) {
 
     // load all comments
     function getComments(arrayOfIds) {
+        dispatch(resetCommentCount());
+
         if (arrayOfIds) {
             Promise.all(arrayOfIds.map(id => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)))
             .then(responses => Promise.all(responses.map(response => response.json())))
             .then(result => {
-                setComments(result);
+                // don't show deleted comments
+                const array = result.filter(comments => (!comments.dead && !comments.deleted));
+                setComments(array);
+                
+                if (array.length > 0) {
+                    // pass the length of an array excluding deleted comments
+                    dispatch(increaseCommentCount(array.length));
+                }
             })
             .catch(err => alert("Error while loading the data"));
         }
     }
 
+    function refreshStoryComments(id) {
+        fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+            .then(response => response.json())
+            .then(story => {
+                dispatch(updateStoryComments(story));
+            })
+            .catch(err => alert("Error while loading the data"));
+    }
+
     useEffect(() => {
         getComments(story.kids);
-    }, []);
+
+        return () => dispatch(resetCommentCount());
+    }, [story]);
 
     return (
         <div>
-            <button onClick={() => getComments(story.kids)}>Refresh comments</button>
+            <button onClick={() => refreshStoryComments(story.id)}>Refresh comments</button>
             <div>Comments for id: {props.id}</div>
-            <div>Comments: {story.kids ? story.kids.length : 0}</div>
+            <div>Comments: {commentCount}</div>
             {listComments}
         </div>
     );

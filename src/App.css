@@ -4,6 +4,10 @@
     border: 1px solid gray;
 }
 
+.comment.hidden {
+    display: none;
+}
+
 .comment:hover {
     background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;

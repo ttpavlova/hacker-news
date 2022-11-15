@@ -15,7 +15,6 @@ function convertToDate(time) {
 
 function Story(props) {
 
-    // const story = useSelector(state => getStoryById(state, props.id));
     const story = useSelector(state => state.stories.stories.find(story => story.id === Number(props.id)));
 
     return(
