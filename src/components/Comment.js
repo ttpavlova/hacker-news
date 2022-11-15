@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { convertToDate } from './Story';
 import { useDispatch } from 'react-redux';
 import { increaseCommentCount } from "../store/commentCountReducer";
-import { Comment as CommentTag } from 'antd';
+import { Button, Comment as CommentTag } from 'antd';
+import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 
 function Comment(props) {
 
@@ -25,11 +26,11 @@ function Comment(props) {
     const actions = [
         // display child comments
         childCommentsHidden === true && (
-            <button onClick={() => setChildCommentsHidden(false)}>Show replies</button>
+            <Button onClick={() => setChildCommentsHidden(false)} icon={<CaretDownOutlined />}>Show replies</Button>
         ),
         // hide child comments
         childCommentsHidden === false && (
-            <button onClick={() => setChildCommentsHidden(true)}>Hide replies</button>
+            <Button onClick={() => setChildCommentsHidden(true)} icon={<CaretUpOutlined />}>Hide replies</Button>
         )
     ];
 

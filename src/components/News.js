@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { getStoriesIdAction } from "../store/storiesIdReducer";
 import { addStoriesAction, getAllStories } from "../store/storiesReducer";
 import Story from "./Story";
-import { Col, Row, Space } from 'antd';
+import { Button, Col, Row, Space } from 'antd';
+import { ReloadOutlined } from '@ant-design/icons';
 
 function News() {
 
@@ -58,7 +59,6 @@ function News() {
         <>
             <Row>
                 <Col span={12}>
-                    <button onClick={() => refreshNews()}>Refresh news</button>
                     <Space
                         direction="vertical"
                         size="middle"
@@ -66,6 +66,7 @@ function News() {
                         display: 'flex',
                         }}
                     >
+                        <Button onClick={() => refreshNews()} icon={<ReloadOutlined />}>Refresh news</Button>
                         {listStories}
                     </Space>
                 </Col>

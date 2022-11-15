@@ -2,6 +2,8 @@ import React from "react";
 import { withRouter } from 'react-router-dom';
 import Comments from "./Comments";
 import Story from "./Story";
+import { Button, Space } from "antd";
+import { ArrowLeftOutlined } from '@ant-design/icons';
 
 function StoryPage(props) {
 
@@ -13,10 +15,11 @@ function StoryPage(props) {
 
     return (
         <div>
-            <h3>Requested topic ID: {id}</h3>
-            <button onClick={() => backToNews()}>Back to news</button>
-            <Story id={id} />
-            <Comments id={id} />
+            <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+                <Button onClick={() => backToNews()} icon={<ArrowLeftOutlined />}>Back to news</Button>
+                <Story id={id} />
+                <Comments id={id} />
+            </Space>
         </div>
     );
 }

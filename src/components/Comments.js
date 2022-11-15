@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { increaseCommentCount, resetCommentCount } from "../store/commentCountReducer";
 import { updateStoryComments } from "../store/storiesReducer";
 import Comment from "./Comment";
+import { Button, Space } from 'antd';
+import { ReloadOutlined } from '@ant-design/icons';
 
 function Comments(props) {
 
@@ -58,9 +60,10 @@ function Comments(props) {
 
     return (
         <div>
-            <button onClick={() => refreshStoryComments(story.id)}>Refresh comments</button>
-            <div>Comments for id: {props.id}</div>
-            <div>Comments: {commentCount}</div>
+            <Space size="middle">
+                <div>Comments: {commentCount}</div>
+                <Button onClick={() => refreshStoryComments(story.id)} icon={<ReloadOutlined />}>Refresh comments</Button>
+            </Space>
             {listComments}
         </div>
     );
