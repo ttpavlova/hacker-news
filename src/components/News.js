@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { getStoriesIdAction } from "../store/storiesIdReducer";
 import { addStoriesAction, getAllStories } from "../store/storiesReducer";
 import Story from "./Story";
+import { Col, Row, Space } from 'antd';
 
 function News() {
 
@@ -55,8 +56,21 @@ function News() {
 
     return (
         <>
-            <button onClick={() => refreshNews()}>Refresh news</button>
-            <div>{listStories}</div>
+            <Row>
+                <Col span={12}>
+                    <button onClick={() => refreshNews()}>Refresh news</button>
+                    <Space
+                        direction="vertical"
+                        size="middle"
+                        style={{
+                        display: 'flex',
+                        }}
+                    >
+                        {listStories}
+                    </Space>
+                </Col>
+                <Col span={12}></Col>
+            </Row>
         </>
     );
 }

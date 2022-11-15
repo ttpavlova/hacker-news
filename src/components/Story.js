@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
+import { Card } from 'antd';
 
 // convert unix timestamp to date
 function convertToDate(time) {
@@ -17,16 +18,17 @@ function Story(props) {
 
     const story = useSelector(state => state.stories.stories.find(story => story.id === Number(props.id)));
 
-    return(
-        <div>
-            <div>{props.id}</div>
-            <Link to={`/news/${props.id}`}>{story.title}</Link>
-            <div>{story.score}</div>
-            <div>{story.by}</div>
-            <div>{story.kids ? "[" + story.kids.join(', ') + "]" : "no comments"}</div>
-            <div>{convertToDate(story.time)}</div>
-            <br></br>
-        </div>
+    return (
+        <>
+            <Card
+                size="small"
+                title={<Link to={`/news/${props.id}`}>{story.title}</Link>}
+            >
+                <p>{story.score} {story.score === 1 ? "point" : "points"}</p>
+                <p>by {story.by}</p>
+                <p>{convertToDate(story.time)}</p>
+            </Card>
+        </>
     );
 }
 

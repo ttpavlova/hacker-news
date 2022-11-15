@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { convertToDate } from './Story';
 import { useDispatch } from 'react-redux';
 import { increaseCommentCount } from "../store/commentCountReducer";
+import { Comment as CommentTag } from 'antd';
 
 function Comment(props) {
 
@@ -20,6 +21,17 @@ function Comment(props) {
             key={comment.id}
         />
     ));
+
+    const actions = [
+        // display child comments
+        childCommentsHidden === true && (
+            <button onClick={() => setChildCommentsHidden(false)}>Show replies</button>
+        ),
+        // hide child comments
+        childCommentsHidden === false && (
+            <button onClick={() => setChildCommentsHidden(true)}>Hide replies</button>
+        )
+    ];
 
     function showChildComments() {
         const arrayOfKidsIds = comment.kids;
@@ -43,26 +55,23 @@ function Comment(props) {
         }
     }
 
-    function displayChildComments() {
-        setChildCommentsHidden(false);
-    }
-
     useEffect(() => {
         showChildComments();
     }, [comment]);
 
     return (
-        <div className={"comment" + (props.childCommentsHidden ? " hidden" : "")}>
-            <div>id: {comment.id}</div>
-            <div>by: {comment.by}</div>
-            <div dangerouslySetInnerHTML={{ __html: comment.text }}></div>
-            <div>time: {convertToDate(comment.time)}</div>
-            {commentKids.length > 0 && (
-                <button onClick={() => displayChildComments()}>Show replies</button>
-            )}
+        <CommentTag
+            className={props.childCommentsHidden ? "hidden" : ""}
+            actions={commentKids.length > 0 && actions}
+            author={comment.by}
+            content={
+                <p dangerouslySetInnerHTML={{ __html: comment.text }}></p>
+            }
+            datetime={convertToDate(comment.time)}
+        >
             {nestedComments}
-            <br></br>
-        </div>
+        </CommentTag>
+        
     );
 }
 

@@ -1,14 +1,19 @@
-.comment {
-    margin-bottom: 10px;
-    padding: 30px;
-    border: 1px solid gray;
+.layout {
+    background: #fff;
 }
 
-.comment.hidden {
+.header {
+    background: #fff;
+}
+
+.content {
+    padding: 0 50px;
+}
+
+.hidden {
     display: none;
 }
 
-.comment:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    cursor: pointer;
+.footer {
+    background: #fff;
 }
