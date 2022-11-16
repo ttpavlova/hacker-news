@@ -22,7 +22,7 @@ function App() {
       <Layout className="layout">
         <Affix offsetTop={0}>
           <Header className="header">
-            <div>Hacker News Clone</div>
+            <div className="logo">Hacker News Clone</div>
           </Header>
         </Affix>
         <Content className="content">
@@ -41,7 +41,7 @@ function App() {
 
         </Content>
         <Footer className="footer">
-          <div>Original website: <a href="https://news.ycombinator.com/news" target="_blank">Hacker News</a></div>
+          <p>The original website: <a href="https://news.ycombinator.com/news" target="_blank">Hacker News</a></p>
         </Footer>
       </Layout>
     </BrowserRouter>
