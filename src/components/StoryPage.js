@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Comments from "./Comments";
 import Story from "./Story";
@@ -8,9 +9,14 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 function StoryPage(props) {
 
     const id = props.id;
+    const story = useSelector(state => state.stories.stories.find(story => story.id === Number(props.id)));
 
     function backToNews() {
         props.history.goBack();
+    }
+
+    if (!story) {
+        return <div>Loading...</div>;
     }
 
     return (

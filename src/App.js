@@ -1,12 +1,22 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './App.css';
+import { useEffect } from "react";
 import News from './components/News';
 import StoryPage from './components/StoryPage';
 import { Layout, Affix } from 'antd';
+import { fetchLatestNews } from './async/async';
+import { useDispatch } from 'react-redux';
 const { Header, Footer, Content } = Layout;
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchLatestNews());
+  }, []);
+  
   return (
     <BrowserRouter>
       <Layout className="layout">

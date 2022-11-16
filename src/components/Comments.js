@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { increaseCommentCount, resetCommentCount } from "../store/commentCountReducer";
 import { updateStoryComments } from "../store/storiesReducer";
+import { fetchComments, fetchStory } from '../async/async';
 import Comment from "./Comment";
 import { Button, Space } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
@@ -23,33 +24,27 @@ function Comments(props) {
     ));
 
     // load all comments
-    function getComments(arrayOfIds) {
+    function getComments(commentIDs) {
         dispatch(resetCommentCount());
 
-        if (arrayOfIds) {
-            Promise.all(arrayOfIds.map(id => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)))
-            .then(responses => Promise.all(responses.map(response => response.json())))
-            .then(result => {
-                // don't show deleted comments
-                const array = result.filter(comments => (!comments.dead && !comments.deleted));
-                setComments(array);
-                
-                if (array.length > 0) {
-                    // pass the length of an array excluding deleted comments
-                    dispatch(increaseCommentCount(array.length));
-                }
-            })
-            .catch(err => alert("Error while loading the data"));
+        if (commentIDs) {
+            fetchComments(commentIDs)
+                .then(result => {
+                    if (result.length > 0) {
+                        setComments(result);
+
+                        // pass the length of an array excluding deleted comments
+                        dispatch(increaseCommentCount(result.length));
+                    }
+                });
         }
     }
 
     function refreshStoryComments(id) {
-        fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-            .then(response => response.json())
+        fetchStory(id)
             .then(story => {
                 dispatch(updateStoryComments(story));
-            })
-            .catch(err => alert("Error while loading the data"));
+            });
     }
 
     useEffect(() => {
