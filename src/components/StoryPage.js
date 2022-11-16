@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Comments from "./Comments";
 import Story from "./Story";
-import { Button, Row, Col, Space } from "antd";
+import { Button, Row, Col, Space, Divider } from "antd";
 import { ArrowLeftOutlined } from '@ant-design/icons';
 
 function StoryPage(props) {
@@ -21,14 +21,15 @@ function StoryPage(props) {
 
     return (
         <Row>
-            <Col span={18}>
+            <Col span={12}>
                 <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
                     <Button onClick={() => backToNews()} icon={<ArrowLeftOutlined />}>Back to news</Button>
                     <Story id={id} />
+                    <Divider />
                     <Comments id={id} />
                 </Space>
             </Col>
-            <Col span={6}></Col>
+            <Col span={12}></Col>
         </Row>
     );
 }

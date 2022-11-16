@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from "react";
 import { getAllStories, resetStories } from "../store/storiesReducer";
 import { fetchLatestNews } from '../async/async';
-import Story from "./Story";
+import StoryCard from "./StoryCard";
 import { Button, Col, Row, Space } from 'antd';
 import { ReloadOutlined } from '@ant-design/icons';
 
@@ -13,7 +13,7 @@ function News() {
     const stories = useSelector(getAllStories);
 
     const listStories = stories.map((story) => (
-        <Story
+        <StoryCard
             id={story.id}
             key={story.id}
         />

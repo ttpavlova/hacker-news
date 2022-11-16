@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { convertToDate } from './Story';
+import { convertToDate } from './StoryDetails';
 import { useDispatch } from 'react-redux';
 import { increaseCommentCount } from "../store/commentCountReducer";
 import { fetchComments } from '../async/async';
