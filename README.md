@@ -10,6 +10,12 @@
 
 Скриншоты представлены ниже:
 
+![main page](/showcase/img/main_page.png)
+<p align="center">Главная страница</p>
+
+![story page](/showcase/img/story_page.png)
+<p align="center">Страница новости</p>
+
 В качестве UI фреймворка использован Ant Design.
 
 ## Продуктовые требования
