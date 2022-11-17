@@ -8,7 +8,7 @@ function Story(props) {
 
     return (
         <div>
-            <h1>{story.title} <a href={story.url} target="_blank">(source)</a></h1>
+            <h1>{story.title} <a href={story.url} target="_blank" rel="noreferrer">(source)</a></h1>
             <StoryDetails
                 id={story.id}
                 score={story.score}

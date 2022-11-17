@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.min.css';
 import './App.css';
 import { useEffect } from "react";
 import News from './components/News';
@@ -41,7 +41,7 @@ function App() {
 
         </Content>
         <Footer className="footer">
-          <p>The original website: <a href="https://news.ycombinator.com/news" target="_blank">Hacker News</a></p>
+          <p>The original website: <a href="https://news.ycombinator.com/news" target="_blank" rel="noreferrer">Hacker News</a></p>
         </Footer>
       </Layout>
     </BrowserRouter>
