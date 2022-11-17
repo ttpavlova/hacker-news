@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# Тестовое задание на позицию стажёра-фронтендера
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Задача
 
-## Available Scripts
+Разработать интерфейс для сайта [Hacker News](https://news.ycombinator.com/news), состоящий из двух страниц.
 
-In the project directory, you can run:
+## Результат
 
-### `yarn start`
+Проект доступен по ссылке:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Скриншоты представлены ниже:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+В качестве UI фреймворка использован Ant Design.
 
-### `yarn test`
+## Продуктовые требования
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Главная страница
+- Показывает последние 100 новостей в виде списка, отсортированного по дате, самые свежие сверху.
+- Каждая новость содержит:
+	- название
+	- рейтинг
+	- ник автора
+ 	- дату публикации
+ - По клику на новость происходит переход на страницу новости
+- Список новостей должен автоматически обновляться раз в минуту без участия пользователя
+- На странице должна быть кнопка для принудительного обновления списка новостей
 
-### `yarn build`
+### Страница новости
+- Должна содержать:	
+  - ссылку на новость
+  - заголовок новости
+  - дату
+  - автора
+  - счётчик количества комментариев
+  - список комментариев в виде дерева
+- Корневые комментарии подгружаются сразу же при входе на страницу, вложенные - по клику на корневой
+- На странице должна быть кнопка для принудительного обновления списка комментариев
+- На странице должна быть кнопка для возврата к списку новостей
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Технические требования
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Приложение разработано с использованием React и Redux
+- Использован [официальный API Hacker News](https://github.com/HackerNews/API). Вызовы Hacker News API и обработка данных от него производятся напрямую с фронтенда (кроме случая, если вы сделаете опциональное задание про Node.JS)
+- Роутинг выполнен с использованием [React Router v5](https://github.com/ReactTraining/react-router/releases/tag/v5.0.0)
+- Фреймворк UI любой на ваше усмотрение (как пример [Ant Design](https://ant.design/) или [Semantic UI](https://react.semantic-ui.com/)). 
+    - Можно и на чистом css, главное, чтобы было красиво
+- Пакетный менеджер `yarn`
+- Приложение должно запускаться по адресу `localhost:3000` командой `yarn start`
+- При переходах по ссылкам страница не перезагружается
+- Исходный код решения должен быть выложен с вашего аккаунта на [Github](http://github.com/) с Readme файлом с инструкцией по запуску
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Запуск
 
-### `yarn eject`
+Загрузите этот репозиторий:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+$ git clone https://github.com/ttpavlova/hacker-news.git
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Установите все зависимости из файла `package.json`:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+`yarn install`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+В директории проекта введите следующую команду:
 
-## Learn More
+`yarn start`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Приложение запустится в режиме разработки.
+Откройте [http://localhost:3000](http://localhost:3000) для его просмотра в браузере.
