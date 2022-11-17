@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchLatestNews());
-  }, []);
+  }, [dispatch]);
   
   return (
     <BrowserRouter>

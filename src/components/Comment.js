@@ -35,24 +35,24 @@ function Comment(props) {
         )
     ];
 
-    function showChildComments(childCommentIDs) {
-        // if this comment has replies
-        if (childCommentIDs) {
-            fetchComments(childCommentIDs)
-                .then(result => {
-                    if (result.length > 0) {
-                        setCommentKids(result);
-
-                        // pass the length of an array excluding deleted comments
-                        dispatch(increaseCommentCount(result.length));
-                    }
-                });
-        }
-    }
-
     useEffect(() => {
+        function showChildComments(childCommentIDs) {
+            // if this comment has replies
+            if (childCommentIDs) {
+                fetchComments(childCommentIDs)
+                    .then(result => {
+                        if (result.length > 0) {
+                            setCommentKids(result);
+    
+                            // pass the length of an array excluding deleted comments
+                            dispatch(increaseCommentCount(result.length));
+                        }
+                    });
+            }
+        }
+
         showChildComments(comment.kids);
-    }, [comment]);
+    }, [comment, dispatch]);
 
     return (
         <CommentTag

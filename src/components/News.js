@@ -30,7 +30,7 @@ function News() {
         }, 60000);
 
         return () => clearInterval(interval); // represents the unmount function
-    }, []);
+    }, [dispatch]);
 
     if (stories.length === 0) {
         return <div>Loading...</div>;

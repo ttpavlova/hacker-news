@@ -23,22 +23,28 @@ function Comments(props) {
         />
     ));
 
-    // load all comments
-    function getComments(commentIDs) {
-        dispatch(resetCommentCount());
+    useEffect(() => {
+        // load all comments
+        function getComments(commentIDs) {
+            dispatch(resetCommentCount());
 
-        if (commentIDs) {
-            fetchComments(commentIDs)
-                .then(result => {
-                    if (result.length > 0) {
-                        setComments(result);
+            if (commentIDs) {
+                fetchComments(commentIDs)
+                    .then(result => {
+                        if (result.length > 0) {
+                            setComments(result);
 
-                        // pass the length of an array excluding deleted comments
-                        dispatch(increaseCommentCount(result.length));
-                    }
-                });
+                            // pass the length of an array excluding deleted comments
+                            dispatch(increaseCommentCount(result.length));
+                        }
+                    });
+            }
         }
-    }
+
+        getComments(story.kids);
+
+        return () => dispatch(resetCommentCount());
+    }, [story, dispatch]);
 
     function refreshStoryComments(id) {
         fetchStory(id)
@@ -46,12 +52,6 @@ function Comments(props) {
                 dispatch(updateStoryComments(story));
             });
     }
-
-    useEffect(() => {
-        getComments(story.kids);
-
-        return () => dispatch(resetCommentCount());
-    }, [story]);
 
     return (
         <div>
