@@ -21,7 +21,7 @@ function StoryPage(props) {
 
     return (
         <Row>
-            <Col span={12}>
+            <Col md={24} lg={12}>
                 <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
                     <Button onClick={() => backToNews()} icon={<ArrowLeftOutlined />}>Back to news</Button>
                     <Story id={id} />
@@ -29,7 +29,7 @@ function StoryPage(props) {
                     <Comments id={id} />
                 </Space>
             </Col>
-            <Col span={12}></Col>
+            <Col md={0} lg={12}></Col>
         </Row>
     );
 }

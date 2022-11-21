@@ -39,7 +39,7 @@ function News() {
     return (
         <>
             <Row>
-                <Col span={12}>
+                <Col md={24} lg={12}>
                     <Space
                         direction="vertical"
                         size="middle"
@@ -51,7 +51,7 @@ function News() {
                         {listStories}
                     </Space>
                 </Col>
-                <Col span={12}></Col>
+                <Col md={0} lg={12}></Col>
             </Row>
         </>
     );
