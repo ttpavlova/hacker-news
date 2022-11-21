@@ -25,9 +25,9 @@ function StoryPage(props) {
                 <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
                     <Button onClick={() => backToNews()} icon={<ArrowLeftOutlined />}>Back to news</Button>
                     <Story id={id} />
-                    <Divider />
-                    <Comments id={id} />
                 </Space>
+                <Divider />
+                <Comments id={id} />
             </Col>
             <Col md={0} lg={12}></Col>
         </Row>
