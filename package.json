@@ -1,5 +1,5 @@
 {
-  "name": "hacker-news",
+  "name": "hacker-news-clone",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
